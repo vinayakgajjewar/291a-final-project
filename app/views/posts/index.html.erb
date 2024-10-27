@@ -1,0 +1,17 @@
+<h1>Welcome <%= current_user.username if current_user %>! </h1>
+<h1>Your Feed</h1>
+
+<ul>
+    <% @posts.each do |post| %>
+        <li>
+            <a href="/posts/<%= post.id %>">
+                <%= post.content%> - <strong><%= post.user.username %></strong>
+            </a>
+            <em>[Created <%= time_ago_in_words(post.created_at) %> ago]</em>
+            <em>[Updated <%= time_ago_in_words(post.updated_at) %> ago]</em>
+        </li>
+    <% end %>
+</ul>
+
+<%= link_to "Make New Post", new_post_path%> <br>
+<%= link_to "Logout", logout_path, method: :delete %>
