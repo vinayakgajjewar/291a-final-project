@@ -19,9 +19,8 @@ class CommentsController < ApplicationController
     def require_login
         redirect_to login_path unless current_user
     end
-    
+
     def comment_params
         params.require(:comment).permit(:content)
     end
 end
-  
