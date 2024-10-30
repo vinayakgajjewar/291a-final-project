@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   delete "/logout", to: "sessions#destroy"
 
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create]
+  end
 end
