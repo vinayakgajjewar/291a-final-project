@@ -1,17 +1,48 @@
-<h1>Welcome <%= current_user.username if current_user %>! </h1>
-<h1>Your Feed</h1>
+<div class="container">
+    <h1>Welcome <%= current_user.username if current_user %>!</h1>
 
-<ul>
+    <h2>Your Feed</h2>
+
+    <ul>
     <% @posts.each do |post| %>
         <li>
             <a href="/posts/<%= post.id %>">
-                <%= post.content%> - <strong><%= post.user.username %></strong>
+                <p><%= post.content %></p>
+                <p><strong><%= post.user.username %></strong></p>
             </a>
-            <em>[Created <%= time_ago_in_words(post.created_at) %> ago]</em>
-            <em>[Updated <%= time_ago_in_words(post.updated_at) %> ago]</em>
+            <p>
+                Created <%= time_ago_in_words(post.created_at) %> ago |
+                Updated <%= time_ago_in_words(post.updated_at) %> ago
+            </p>
         </li>
     <% end %>
-</ul>
+    </ul>
 
-<%= link_to "Make New Post", new_post_path%> <br>
-<%= link_to "Logout", logout_path, method: :delete %>
+    <div>
+    <%= link_to "Make New Post", new_post_path %>
+    <%= link_to "Logout", logout_path, method: :delete %>
+    </div>
+</div>
+
+<style>
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        border-bottom: 1px solid ;
+        padding-bottom: 1rem;
+    }
+</style>
